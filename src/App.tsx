@@ -1,24 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from 'react';
+
+import IPFS, { CID } from 'ipfs-core';
 
 function App() {
+
+  const [cid, setCid] = useState<CID>();
+
+  useEffect(() => {
+    (async () => {
+      const ipfs = await IPFS.create();
+      const { cid } = await ipfs.add("helloooo ");
+      setCid(cid);
+    })();
+  },[])
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div>Cid is: {cid} </div>
     </div>
   );
 }
