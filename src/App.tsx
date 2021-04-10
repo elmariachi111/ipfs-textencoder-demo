@@ -17,7 +17,7 @@ function App() {
 
   return (
     <div className="App">
-      <div>Cid is: {cid} </div>
+      <div>Cid is: {cid?.toString()} </div>
     </div>
   );
 }
